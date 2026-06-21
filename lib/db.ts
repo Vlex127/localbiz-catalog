@@ -17,7 +17,11 @@ export async function initDB() {
   const schema = readFileSync(join(process.cwd(), 'schema.sql'), 'utf-8');
   const statements = schema.split(';').filter(s => s.trim());
   for (const stmt of statements) {
-    await client.execute(stmt);
+    try {
+      await client.execute(stmt);
+    } catch {
+      // skip migration errors (e.g. column already exists)
+    }
   }
 }
 

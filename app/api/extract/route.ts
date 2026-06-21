@@ -17,12 +17,6 @@ export async function POST(req: NextRequest) {
       }, { status: 400 });
     }
 
-    if (image.length > 10_000_000) {
-      return NextResponse.json({
-        error: 'Image is too large. Try a smaller photo (under 10MB).'
-      }, { status: 400 });
-    }
-
     if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({
         error: 'Gemini API key not configured. Use the demo below to try the app.'

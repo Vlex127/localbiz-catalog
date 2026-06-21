@@ -11,14 +11,35 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
   const fileRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+  function compressImage(dataUrl: string, maxW = 1200): Promise<string> {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        if (width > maxW) {
+          height = (height / width) * maxW;
+          width = maxW;
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.8));
+      };
+      img.src = dataUrl;
+    });
+  }
+
+  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       const dataUrl = reader.result as string;
-      setPreview(dataUrl);
-      onCapture(dataUrl);
+      const compressed = await compressImage(dataUrl);
+      setPreview(compressed);
+      onCapture(compressed);
     };
     reader.readAsDataURL(file);
   }
