@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface CameraCaptureProps {
   onCapture: (dataUrl: string) => void;
@@ -10,6 +10,7 @@ interface CameraCaptureProps {
 export default function CameraCapture({ onCapture, loading }: CameraCaptureProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [pasteHint, setPasteHint] = useState(false);
 
   function compressImage(dataUrl: string, maxW = 1200): Promise<string> {
     return new Promise((resolve) => {
@@ -31,18 +32,52 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
     });
   }
 
+  async function processImage(dataUrl: string) {
+    const compressed = await compressImage(dataUrl);
+    setPreview(compressed);
+    onCapture(compressed);
+  }
+
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
     reader.onload = async () => {
-      const dataUrl = reader.result as string;
-      const compressed = await compressImage(dataUrl);
-      setPreview(compressed);
-      onCapture(compressed);
+      await processImage(reader.result as string);
     };
     reader.readAsDataURL(file);
   }
+
+  const handlePaste = useCallback(async (e: ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = async () => {
+          await processImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+        break;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('paste', handlePaste);
+    return () => document.removeEventListener('paste', handlePaste);
+  }, [handlePaste]);
+
+  useEffect(() => {
+    if (!preview && !loading) {
+      const t = setTimeout(() => setPasteHint(true), 3000);
+      return () => clearTimeout(t);
+    }
+    setPasteHint(false);
+  }, [preview, loading]);
 
   function handleCapture() {
     fileRef.current?.click();
@@ -103,9 +138,16 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
               Add a product photo
             </p>
             <p className="text-xs text-stone-400 mt-0.5">
-              Tap to capture or upload from gallery
+              Tap to capture or paste an image
             </p>
           </div>
+          {pasteHint && (
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 animate-fade-in">
+              <span className="text-[10px] text-stone-400 bg-stone-100 px-2.5 py-1 rounded-full whitespace-nowrap">
+                Or press Ctrl+V to paste
+              </span>
+            </div>
+          )}
         </button>
       )}
     </div>
