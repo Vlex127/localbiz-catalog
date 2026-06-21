@@ -20,6 +20,8 @@ function cleanJson(text: string): string {
 export async function extractProductFromImage(imageBase64: string, mimeType = 'image/jpeg'): Promise<ExtractedProduct> {
   const model = getModel();
 
+  const cleanBase64 = imageBase64.replace(/^data:image\/[a-z]+;base64,/, '');
+
   const prompt = `You are a product catalog assistant. Analyze this product photo.
 Return ONLY valid JSON (no markdown, no extra text):
 
@@ -32,7 +34,7 @@ Return ONLY valid JSON (no markdown, no extra text):
 
   const result = await model.generateContent([
     prompt,
-    { inlineData: { mimeType, data: imageBase64 } }
+    { inlineData: { mimeType, data: cleanBase64 } }
   ]);
 
   const text = result.response.text().trim();
