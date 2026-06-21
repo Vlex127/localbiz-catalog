@@ -32,12 +32,11 @@ function getClient() {
   const url = process.env.DATABASE_URL;
   const token = process.env.DATABASE_TOKEN;
 
-  if (url && token) {
-    _client = createClient({ url, authToken: token });
-  } else {
-    _client = createClient({ url: `file:${process.cwd()}/data.db` });
+  if (!url || !token) {
+    throw new Error('DATABASE_URL and DATABASE_TOKEN must be set in environment');
   }
 
+  _client = createClient({ url, authToken: token });
   return _client;
 }
 
