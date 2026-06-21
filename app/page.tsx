@@ -150,7 +150,7 @@ export default function Home() {
     setLastImageDataUrl(dataUrl);
 
     const commaIdx = dataUrl.indexOf(',');
-    const mimeType = dataUrl.slice(5, commaIdx);
+    const mimeType = dataUrl.slice(5, commaIdx).split(';')[0];
     const rawBase64 = dataUrl.slice(commaIdx + 1);
 
     try {

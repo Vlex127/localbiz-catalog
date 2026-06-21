@@ -17,10 +17,23 @@ function cleanJson(text: string): string {
   return text.replace(/```json?/g, '').replace(/```/g, '').trim();
 }
 
-export async function extractProductFromImage(imageBase64: string, mimeType = 'image/jpeg'): Promise<ExtractedProduct> {
+export async function extractProductFromImage(imageBase64: string, incomingMimeType = 'image/jpeg'): Promise<ExtractedProduct> {
   const model = getModel();
 
-  const cleanBase64 = imageBase64.replace(/^data:image\/[a-z]+;base64,/, '');
+  let cleanBase64 = imageBase64;
+  let finalMimeType = incomingMimeType;
+
+  if (imageBase64.startsWith('data:')) {
+    const match = imageBase64.match(/^data:([^;]+);base64,(.*)$/);
+    if (match) {
+      finalMimeType = match[1];
+      cleanBase64 = match[2];
+    }
+  }
+
+  if (finalMimeType.includes(';base64')) {
+    finalMimeType = finalMimeType.split(';')[0];
+  }
 
   const prompt = `You are a product catalog assistant. Analyze this product photo.
 Return ONLY valid JSON (no markdown, no extra text):
@@ -34,7 +47,7 @@ Return ONLY valid JSON (no markdown, no extra text):
 
   const result = await model.generateContent([
     prompt,
-    { inlineData: { mimeType, data: cleanBase64 } }
+    { inlineData: { mimeType: finalMimeType, data: cleanBase64 } }
   ]);
 
   const text = result.response.text().trim();
