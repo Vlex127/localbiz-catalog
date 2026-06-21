@@ -1,27 +1,51 @@
 import { createClient } from '@libsql/client';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { join } from 'path';
 
-const DB_PATH = join(process.cwd(), 'data.db');
+const SCHEMA = `
+CREATE TABLE IF NOT EXISTS catalogs (
+  id          TEXT PRIMARY KEY,
+  slug        TEXT UNIQUE NOT NULL,
+  business    TEXT NOT NULL DEFAULT 'My Store',
+  description TEXT,
+  is_published INTEGER DEFAULT 0,
+  created_at  TEXT DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id       TEXT PRIMARY KEY,
+  catalog_id TEXT NOT NULL REFERENCES catalogs(id),
+  name     TEXT NOT NULL,
+  description TEXT,
+  category TEXT,
+  price    REAL,
+  currency TEXT DEFAULT 'INR',
+  image    TEXT,
+  sort_order INTEGER DEFAULT 0,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+`;
 
 let _client: ReturnType<typeof createClient> | null = null;
 
 function getClient() {
   if (_client) return _client;
-  _client = createClient({ url: `file:${DB_PATH}` });
+
+  const url = process.env.DATABASE_URL;
+  const token = process.env.DATABASE_TOKEN;
+
+  if (url && token) {
+    _client = createClient({ url, authToken: token });
+  } else {
+    _client = createClient({ url: `file:${process.cwd()}/data.db` });
+  }
+
   return _client;
 }
 
 export async function initDB() {
   const client = getClient();
-  const schema = readFileSync(join(process.cwd(), 'schema.sql'), 'utf-8');
-  const statements = schema.split(';').filter(s => s.trim());
+  const statements = SCHEMA.split(';').filter(s => s.trim());
   for (const stmt of statements) {
-    try {
-      await client.execute(stmt);
-    } catch {
-      // skip migration errors (e.g. column already exists)
-    }
+    try { await client.execute(stmt); } catch {}
   }
 }
 

@@ -7,9 +7,6 @@ CREATE TABLE IF NOT EXISTS catalogs (
   created_at  TEXT DEFAULT (datetime('now'))
 );
 
--- Migration: add description column for older databases
-ALTER TABLE catalogs ADD COLUMN description TEXT;
-
 CREATE TABLE IF NOT EXISTS products (
   id       TEXT PRIMARY KEY,
   catalog_id TEXT NOT NULL REFERENCES catalogs(id),
