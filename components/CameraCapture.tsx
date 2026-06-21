@@ -12,7 +12,7 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
   const [preview, setPreview] = useState<string | null>(null);
   const [pasteHint, setPasteHint] = useState(false);
 
-  function compressImage(dataUrl: string, maxW = 1200): Promise<string> {
+  const compressImage = useCallback((dataUrl: string, maxW = 1200): Promise<string> => {
     return new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
@@ -24,19 +24,23 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
         }
         canvas.width = width;
         canvas.height = height;
-        const ctx = canvas.getContext('2d')!;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(dataUrl);
+          return;
+        }
         ctx.drawImage(img, 0, 0, width, height);
         resolve(canvas.toDataURL('image/jpeg', 0.8));
       };
       img.src = dataUrl;
     });
-  }
+  }, []);
 
-  async function processImage(dataUrl: string) {
+  const processImage = useCallback(async (dataUrl: string) => {
     const compressed = await compressImage(dataUrl);
     setPreview(compressed);
     onCapture(compressed);
-  }
+  }, [compressImage, onCapture]);
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -64,7 +68,7 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
         break;
       }
     }
-  }, []);
+  }, [processImage]);
 
   useEffect(() => {
     document.addEventListener('paste', handlePaste);
@@ -72,15 +76,20 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
   }, [handlePaste]);
 
   useEffect(() => {
-    if (!preview && !loading) {
-      const t = setTimeout(() => setPasteHint(true), 3000);
-      return () => clearTimeout(t);
-    }
-    setPasteHint(false);
+    if (preview || loading) return;
+    const t = setTimeout(() => setPasteHint(true), 3000);
+    return () => clearTimeout(t);
   }, [preview, loading]);
 
   function handleCapture() {
+    setPasteHint(false);
     fileRef.current?.click();
+  }
+
+  function handleRetake() {
+    setPreview(null);
+    setPasteHint(false);
+    onCapture('');
   }
 
   return (
@@ -112,7 +121,7 @@ export default function CameraCapture({ onCapture, loading }: CameraCaptureProps
           )}
           {!loading && (
             <button
-              onClick={() => { setPreview(null); onCapture(''); }}
+              onClick={handleRetake}
               className="absolute top-3 right-3 bg-white/90 backdrop-blur text-stone-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm hover:bg-white transition"
             >
               Retake

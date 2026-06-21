@@ -9,29 +9,26 @@ const THEMES = [
   {
     id: 'general' as const,
     label: 'General Store',
-    icon: '🏪',
+    icon: 'Store',
     desc: 'Groceries, home & kitchen, beauty',
     bg: 'from-amber-50 to-orange-50',
     border: 'border-amber-200/60',
-    btn: 'bg-amber-500 hover:bg-amber-600',
   },
   {
     id: 'healthcare' as const,
     label: 'Healthcare',
-    icon: '🏥',
+    icon: 'Care',
     desc: 'Ayurvedic, wellness & herbal',
     bg: 'from-emerald-50 to-green-50',
     border: 'border-emerald-200/60',
-    btn: 'bg-emerald-500 hover:bg-emerald-600',
   },
   {
     id: 'agriculture' as const,
     label: 'Agriculture',
-    icon: '🌾',
+    icon: 'Farm',
     desc: 'Farming, seeds & organic inputs',
     bg: 'from-lime-50 to-yellow-50',
     border: 'border-lime-200/60',
-    btn: 'bg-lime-500 hover:bg-lime-600',
   },
 ];
 
@@ -51,7 +48,7 @@ export default function DemoBanner({ onLoadDemo, hasProducts }: DemoBannerProps)
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-semibold text-stone-800">No API key configured?</h3>
             <p className="text-xs text-stone-500 mt-0.5 leading-relaxed">
-              Try the demo with sample products to see how it works — no setup required.
+              Try the demo with sample products to see how it works - no setup required.
             </p>
           </div>
         </div>
@@ -64,7 +61,9 @@ export default function DemoBanner({ onLoadDemo, hasProducts }: DemoBannerProps)
             onClick={() => onLoadDemo(theme.id)}
             className={`flex items-center gap-3 w-full p-3 rounded-xl border ${theme.border} ${theme.bg} hover:shadow-sm transition-all active:scale-[0.98] text-left`}
           >
-            <span className="text-lg">{theme.icon}</span>
+            <span className="text-[10px] font-bold text-stone-500 bg-white/70 border border-white rounded-md px-2 py-1">
+              {theme.icon}
+            </span>
             <div>
               <span className="text-sm font-semibold text-stone-800">{theme.label}</span>
               <p className="text-[10px] text-stone-500">{theme.desc}</p>

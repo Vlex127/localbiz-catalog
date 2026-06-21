@@ -16,6 +16,5 @@ export function slugify(text: string): string {
 
 export function formatPrice(price: number | null, currency = 'INR'): string {
   if (price === null || price === undefined) return '';
-  const symbols: Record<string, string> = { INR: '₹', USD: '$', EUR: '€' };
-  return `${symbols[currency] || currency} ${price.toFixed(2)}`;
+  return `${currency} ${price.toFixed(2)}`;
 }

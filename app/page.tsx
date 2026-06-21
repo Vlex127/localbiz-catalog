@@ -12,133 +12,262 @@ import { slugify } from '@/lib/utils';
 
 const DEMO_PRODUCTS_GENERAL: ProductItem[] = [
   {
-    id: 'demo-1', name: 'Organic Cold-Pressed Coconut Oil',
+    id: 'demo-1',
+    name: 'Organic Cold-Pressed Coconut Oil',
     description: 'Pure, unrefined coconut oil cold-pressed from fresh coconuts. Rich in lauric acid, perfect for cooking, skin care, and hair treatments.',
-    category: 'Groceries', price: 349, currency: 'INR', image: null,
+    category: 'Groceries',
+    price: 349,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'demo-2', name: 'Handwoven Cotton Dhurrie — Natural Dyes',
+    id: 'demo-2',
+    name: 'Handwoven Cotton Dhurrie - Natural Dyes',
     description: 'Traditional handwoven cotton rug made by artisans in rural Rajasthan. Each piece is unique with natural plant-based dyes.',
-    category: 'Home & Kitchen', price: 1299, currency: 'INR', image: null,
+    category: 'Home & Kitchen',
+    price: 1299,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'demo-3', name: 'Millet & Quinoa Breakfast Mix 500g',
+    id: 'demo-3',
+    name: 'Millet & Quinoa Breakfast Mix 500g',
     description: 'A wholesome blend of barnyard millet, foxtail millet, and white quinoa. High protein, gluten-free, and ready in 10 minutes.',
-    category: 'Groceries', price: 249, currency: 'INR', image: null,
+    category: 'Groceries',
+    price: 249,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'demo-4', name: 'Raw Honey — Wild Forest Harvest 250ml',
+    id: 'demo-4',
+    name: 'Raw Honey - Wild Forest Harvest 250ml',
     description: 'Unprocessed wild honey sourced from the Western Ghats forests. Rich amber color with floral notes. No additives or filtration.',
-    category: 'Groceries', price: 449, currency: 'INR', image: null,
+    category: 'Groceries',
+    price: 449,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'demo-5', name: 'Handmade Shea Butter Soap — Lemongrass',
+    id: 'demo-5',
+    name: 'Handmade Shea Butter Soap - Lemongrass',
     description: 'Nourishing shea butter soap with organic lemongrass essential oil. Gently exfoliates with oat flour. Plastic-free packaging.',
-    category: 'Beauty', price: 179, currency: 'INR', image: null,
+    category: 'Beauty',
+    price: 179,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'demo-6', name: 'Brass Handi Cooking Pot 1.5L',
+    id: 'demo-6',
+    name: 'Brass Handi Cooking Pot 1.5L',
     description: 'Traditional brass handi with a tin coating. Perfect for slow-cooking curries, biryanis, and dals. Heat-resistant wooden handles.',
-    category: 'Home & Kitchen', price: 899, currency: 'INR', image: null,
+    category: 'Home & Kitchen',
+    price: 899,
+    currency: 'INR',
+    image: null,
   },
 ];
 
 const DEMO_PRODUCTS_HEALTHCARE: ProductItem[] = [
   {
-    id: 'h-demo-1', name: 'Ayurvedic Chyawanprash — 1kg',
+    id: 'h-demo-1',
+    name: 'Ayurvedic Chyawanprash - 1kg',
     description: 'Traditional herbal jam made with amla, ashwagandha, and 40+ herbs. Boosts immunity and vitality. Made in small batches with raw honey.',
-    category: 'Healthcare', price: 499, currency: 'INR', image: null,
+    category: 'Healthcare',
+    price: 499,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'h-demo-2', name: 'Hand Sanitizer — Neem & Tulsi 100ml',
+    id: 'h-demo-2',
+    name: 'Hand Sanitizer - Neem & Tulsi 100ml',
     description: 'Alcohol-based sanitizer infused with neem and tulsi extracts. Kills 99.9% germs while being gentle on skin. No artificial fragrance.',
-    category: 'Healthcare', price: 99, currency: 'INR', image: null,
+    category: 'Healthcare',
+    price: 99,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'h-demo-3', name: 'Organic Turmeric Powder 200g',
+    id: 'h-demo-3',
+    name: 'Organic Turmeric Powder 200g',
     description: 'Pure Lakadong turmeric with 7%+ curcumin content. Sourced directly from farmers in Meghalaya. No additives or preservatives.',
-    category: 'Healthcare', price: 249, currency: 'INR', image: null,
+    category: 'Healthcare',
+    price: 249,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'h-demo-4', name: 'Herbal Tooth Powder — Mint & Clove 100g',
+    id: 'h-demo-4',
+    name: 'Herbal Tooth Powder - Mint & Clove 100g',
     description: 'Fluoride-free tooth powder made with neem, clove, and peppermint. Strengthens gums and freshens breath naturally.',
-    category: 'Healthcare', price: 149, currency: 'INR', image: null,
+    category: 'Healthcare',
+    price: 149,
+    currency: 'INR',
+    image: null,
   },
 ];
 
 const DEMO_PRODUCTS_AGRICULTURE: ProductItem[] = [
   {
-    id: 'a-demo-1', name: 'Organic Vermicompost 5kg',
+    id: 'a-demo-1',
+    name: 'Organic Vermicompost 5kg',
     description: 'Nutrient-rich worm castings from food waste. Improves soil health, boosts plant growth naturally. Perfect for home gardens and farms.',
-    category: 'Agriculture', price: 299, currency: 'INR', image: null,
+    category: 'Agriculture',
+    price: 299,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'a-demo-2', name: 'Neem Cake Fertilizer 2kg',
+    id: 'a-demo-2',
+    name: 'Neem Cake Fertilizer 2kg',
     description: 'Cold-pressed neem seed cake, a natural organic fertilizer and pest repellent. Enriches soil with nitrogen and protects crops naturally.',
-    category: 'Agriculture', price: 179, currency: 'INR', image: null,
+    category: 'Agriculture',
+    price: 179,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'a-demo-3', name: 'Open-Pollinated Vegetable Seed Kit',
-    description: '12 varieties of traditional desi vegetable seeds — tomato, brinjal, okra, chili, and more. Non-GMO, open-pollinated, high germination rate.',
-    category: 'Agriculture', price: 399, currency: 'INR', image: null,
+    id: 'a-demo-3',
+    name: 'Open-Pollinated Vegetable Seed Kit',
+    description: '12 varieties of traditional desi vegetable seeds - tomato, brinjal, okra, chili, and more. Non-GMO, open-pollinated, high germination rate.',
+    category: 'Agriculture',
+    price: 399,
+    currency: 'INR',
+    image: null,
   },
   {
-    id: 'a-demo-4', name: 'Cocopeat Grow Bags — Set of 10',
+    id: 'a-demo-4',
+    name: 'Cocopeat Grow Bags - Set of 10',
     description: 'Compressed cocopeat blocks made from coconut husk waste. Expands 5x when watered. Reusable, biodegradable, ideal for terrace farming.',
-    category: 'Agriculture', price: 449, currency: 'INR', image: null,
+    category: 'Agriculture',
+    price: 449,
+    currency: 'INR',
+    image: null,
   },
 ];
 
+type SavedState = {
+  catalogId: string | null;
+  catalogSlug: string | null;
+  products: ProductItem[];
+  business: string;
+  catalogDescription: string | null;
+};
+
+const EMPTY_STATE: SavedState = {
+  catalogId: null,
+  catalogSlug: null,
+  products: [],
+  business: 'My Store',
+  catalogDescription: null,
+};
+
+function getSavedState(): SavedState {
+  if (typeof window === 'undefined') return EMPTY_STATE;
+
+  try {
+    const saved = sessionStorage.getItem('catalog_state');
+    if (!saved) return EMPTY_STATE;
+    const parsed = JSON.parse(saved) as Partial<SavedState>;
+
+    return {
+      catalogId: parsed.catalogId ?? null,
+      catalogSlug: parsed.catalogSlug ?? null,
+      products: parsed.products ?? [],
+      business: parsed.business || 'My Store',
+      catalogDescription: parsed.catalogDescription ?? null,
+    };
+  } catch {
+    return EMPTY_STATE;
+  }
+}
+
 export default function Home() {
+  const initialState = getSavedState();
   const [extracting, setExtracting] = useState(false);
   const [saving, setSaving] = useState(false);
   const [productData, setProductData] = useState<ProductData | null>(null);
-  const [products, setProducts] = useState<ProductItem[]>([]);
-  const [catalogId, setCatalogId] = useState<string | null>(null);
-  const [catalogSlug, setCatalogSlug] = useState<string | null>(null);
-  const [business, setBusiness] = useState('My Store');
+  const [products, setProducts] = useState<ProductItem[]>(initialState.products);
+  const [catalogId, setCatalogId] = useState<string | null>(initialState.catalogId);
+  const [catalogSlug, setCatalogSlug] = useState<string | null>(initialState.catalogSlug);
+  const [business, setBusiness] = useState(initialState.business);
   const [publishing, setPublishing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastImageDataUrl, setLastImageDataUrl] = useState<string | null>(null);
-  const [showHowItWorks, setShowHowItWorks] = useState(true);
-  const [catalogDescription, setCatalogDescription] = useState<string | null>(null);
-  const [generatingDesc, setGeneratingDesc] = useState(false);
+  const [showHowItWorks, setShowHowItWorks] = useState(initialState.products.length === 0);
+  const [catalogDescription, setCatalogDescription] = useState<string | null>(initialState.catalogDescription);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('catalog_state');
-    if (saved) {
-      try {
-        const state = JSON.parse(saved);
-        setCatalogId(state.catalogId);
-        setCatalogSlug(state.catalogSlug);
-        setProducts(state.products || []);
-        setBusiness(state.business || 'My Store');
-        setCatalogDescription(state.catalogDescription || null);
-        if (state.products?.length > 0) setShowHowItWorks(false);
-      } catch {}
-    }
-  }, []);
-
-  function persistState() {
     sessionStorage.setItem('catalog_state', JSON.stringify({
-      catalogId, catalogSlug, products, business, catalogDescription,
+      catalogId,
+      catalogSlug,
+      products,
+      business,
+      catalogDescription,
     }));
+  }, [business, catalogDescription, catalogId, catalogSlug, products]);
+
+  async function createCatalog(slug: string) {
+    const res = await fetch(`/api/catalog/${slug}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'create', business }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to create catalog');
+    return data.id as string;
   }
 
-  function loadDemo(theme: 'general' | 'healthcare' | 'agriculture') {
-    const slug = slugify(business) + '-' + Math.random().toString(36).slice(2, 8);
-    const id = 'demo-cat-' + Math.random().toString(36).slice(2, 8);
-    setCatalogId(id);
-    setCatalogSlug(slug);
-    const demos = {
+  async function addProduct(cId: string, cSlug: string, product: ProductItem, image: string | null) {
+    const res = await fetch(`/api/catalog/${cSlug}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'add_product',
+        catalog_id: cId,
+        name: product.name,
+        description: product.description,
+        category: product.category,
+        price: product.price,
+        image,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to add product');
+    return data.id as string;
+  }
+
+  async function loadDemo(theme: 'general' | 'healthcare' | 'agriculture') {
+    const demoSets = {
       general: DEMO_PRODUCTS_GENERAL,
       healthcare: DEMO_PRODUCTS_HEALTHCARE,
       agriculture: DEMO_PRODUCTS_AGRICULTURE,
     };
-    setProducts(demos[theme]);
-    setShowHowItWorks(false);
-    persistState();
+    const selected = demoSets[theme];
+    const slug = `${slugify(business)}-${Math.random().toString(36).slice(2, 8)}`;
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      const cId = await createCatalog(slug);
+      const persistedProducts: ProductItem[] = [];
+
+      for (const product of selected) {
+        const id = await addProduct(cId, slug, product, null);
+        persistedProducts.push({ ...product, id });
+      }
+
+      setCatalogId(cId);
+      setCatalogSlug(slug);
+      setProducts(persistedProducts);
+      setShowHowItWorks(false);
+      setCatalogDescription(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load demo catalog');
+    } finally {
+      setSaving(false);
+    }
   }
 
   const handleCapture = useCallback(async (dataUrl: string) => {
@@ -173,41 +302,21 @@ export default function Home() {
     if (!productData) return;
     setSaving(true);
     setError(null);
+
     try {
       let cId = catalogId;
       let cSlug = catalogSlug;
 
-      if (!cId) {
-        cSlug = slugify(business) + '-' + Math.random().toString(36).slice(2, 8);
-        const res = await fetch(`/api/catalog/${cSlug}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'create', business }),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error);
-        cId = data.id;
+      if (!cId || !cSlug) {
+        cSlug = `${slugify(business)}-${Math.random().toString(36).slice(2, 8)}`;
+        cId = await createCatalog(cSlug);
         setCatalogId(cId);
         setCatalogSlug(cSlug);
       }
 
       const imageToStore = lastImageDataUrl || null;
-
-      const res = await fetch(`/api/catalog/${cSlug}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'add_product',
-          catalog_id: cId,
-          ...productData,
-          image: imageToStore,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-
-      const newProduct: ProductItem = {
-        id: data.id,
+      const product: ProductItem = {
+        id: '',
         name: productData.name,
         description: productData.description,
         category: productData.category,
@@ -215,13 +324,12 @@ export default function Home() {
         currency: 'INR',
         image: imageToStore,
       };
+      const id = await addProduct(cId, cSlug, product, imageToStore);
 
-      const updated = [...products, newProduct];
-      setProducts(updated);
+      setProducts(prev => [...prev, { ...product, id }]);
       setProductData(null);
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2500);
-      persistState();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save');
     } finally {
@@ -231,6 +339,7 @@ export default function Home() {
 
   async function handleDelete(id: string) {
     if (!catalogSlug) return;
+
     try {
       await fetch(`/api/catalog/${catalogSlug}`, {
         method: 'POST',
@@ -238,43 +347,8 @@ export default function Home() {
         body: JSON.stringify({ action: 'delete_product', product_id: id }),
       });
       setProducts(prev => prev.filter(p => p.id !== id));
-      persistState();
-    } catch {}
-  }
-
-  async function handlePublish() {
-    if (!catalogId || !catalogSlug) return;
-    setPublishing(true);
-    try {
-      if (!catalogDescription && products.length > 0) {
-        setGeneratingDesc(true);
-        try {
-          const descRes = await fetch('/api/gemini', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'generate_catalog_description',
-              business,
-              products: products.map(p => p.name),
-            }),
-          });
-          const descJson = await descRes.json();
-          if (descRes.ok) setCatalogDescription(descJson.result);
-        } catch {} finally { setGeneratingDesc(false); }
-      }
-
-      await fetch(`/api/catalog/${catalogSlug}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'publish',
-          catalog_id: catalogId,
-          description: catalogDescription || undefined,
-        }),
-      });
-      persistState();
-    } finally {
-      setPublishing(false);
+    } catch {
+      setError('Failed to remove product');
     }
   }
 
@@ -286,6 +360,40 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'update', catalog_id: catalogId, business: name }),
       }).catch(() => {});
+    }
+  }
+
+  async function handleGenerateTagline() {
+    if (!catalogId || !catalogSlug || products.length === 0) return;
+
+    setPublishing(true);
+    try {
+      const descRes = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'generate_catalog_description',
+          business,
+          products: products.map(p => p.name),
+        }),
+      });
+      const descJson = await descRes.json();
+      if (!descRes.ok) throw new Error(descJson.error || 'Failed to generate tagline');
+
+      setCatalogDescription(descJson.result);
+      await fetch(`/api/catalog/${catalogSlug}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'publish',
+          catalog_id: catalogId,
+          description: descJson.result,
+        }),
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to generate tagline');
+    } finally {
+      setPublishing(false);
     }
   }
 
@@ -309,27 +417,17 @@ export default function Home() {
           Your shop,<br />now online in minutes
         </h2>
         <p className="text-sm text-stone-500 mt-2 leading-relaxed max-w-xs mx-auto">
-          Snap a photo of any product and AI instantly generates a name, description, price, and category — then publish a beautiful catalog your customers can browse on any phone.
+          Snap a photo of any product and AI instantly generates a name, description, price, and category - then publish a catalog your customers can browse on any phone.
         </p>
         <div className="flex items-center justify-center gap-6 mt-4 text-xs text-stone-400">
-          <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            No typing needed
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            Free to use
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            Share instantly
-          </span>
+          {['No typing needed', 'Free to use', 'Share instantly'].map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -344,7 +442,7 @@ export default function Home() {
         <div className="w-full max-w-sm animate-slide-down">
           <div className="bg-red-50 border border-red-100 rounded-2xl px-4 py-3 flex items-start gap-2.5">
             <svg className="w-4 h-4 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 0118 0z" />
             </svg>
             <p className="text-sm text-red-700">{error}</p>
           </div>
@@ -357,7 +455,7 @@ export default function Home() {
             <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
             </svg>
-            <p className="text-sm text-[var(--accent)] font-medium">Product added to catalog!</p>
+            <p className="text-sm text-[var(--accent)] font-medium">Product added to catalog.</p>
           </div>
         </div>
       )}
@@ -403,35 +501,23 @@ export default function Home() {
             </span>
           </button>
 
-          {!catalogSlug ? (
-            <button
-              onClick={handlePublish}
-              disabled={publishing}
-              className="w-full py-3 bg-gradient-to-r from-[var(--brand)] to-[var(--brand-dark)] text-white rounded-xl text-sm font-semibold hover:from-[var(--brand-dark)] hover:to-[var(--brand-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-sm"
-            >
-              {publishing ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Publishing...
-                </span>
-              ) : (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Publish Catalog
-                </span>
+          {catalogSlug && (
+            <>
+              {!catalogDescription && (
+                <button
+                  onClick={handleGenerateTagline}
+                  disabled={publishing}
+                  className="w-full py-3 bg-gradient-to-r from-[var(--brand)] to-[var(--brand-dark)] text-white rounded-xl text-sm font-semibold hover:from-[var(--brand-dark)] hover:to-[var(--brand-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-sm"
+                >
+                  {publishing ? 'Generating tagline...' : 'Generate AI Store Tagline'}
+                </button>
               )}
-            </button>
-          ) : (
-            <ShareSheet
-              slug={catalogSlug}
-              business={business}
-              productCount={products.length}
-            />
+              <ShareSheet
+                slug={catalogSlug}
+                business={business}
+                productCount={products.length}
+              />
+            </>
           )}
         </div>
       )}
@@ -446,7 +532,7 @@ export default function Home() {
 
       <footer className="w-full max-w-sm pt-4 pb-6 text-center border-t border-stone-100">
         <p className="text-[10px] text-stone-300 tracking-wider uppercase font-medium">Powered by LocalBiz Catalog</p>
-        <p className="text-[10px] text-stone-200 mt-1">Built with Gemini AI · Next.js · SQLite</p>
+        <p className="text-[10px] text-stone-200 mt-1">Built with Gemini AI, Next.js, and SQLite</p>
       </footer>
     </main>
   );

@@ -19,7 +19,7 @@ export default function ShareSheet({ slug, business, productCount }: ShareSheetP
   }
 
   function shareWhatsApp() {
-    const text = encodeURIComponent(`Check out ${business} — browse our products here!\n${url}`);
+    const text = encodeURIComponent(`Check out ${business} - browse our products here!\n${url}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
   }
 
@@ -36,9 +36,9 @@ export default function ShareSheet({ slug, business, productCount }: ShareSheetP
             </svg>
           </div>
           <div>
-            <h3 className="font-semibold text-stone-800 text-sm">Your catalog is live!</h3>
+            <h3 className="font-semibold text-stone-800 text-sm">Your catalog is live.</h3>
             <p className="text-xs text-stone-500">
-              {productCount} product{productCount !== 1 ? 's' : ''} · Share with your customers
+              {productCount} product{productCount !== 1 ? 's' : ''} - share with your customers
             </p>
           </div>
         </div>
@@ -49,16 +49,7 @@ export default function ShareSheet({ slug, business, productCount }: ShareSheetP
             onClick={copyLink}
             className="shrink-0 px-4 py-2 bg-[var(--accent)] text-white text-xs font-semibold rounded-lg hover:bg-[var(--accent)]/90 active:scale-[0.97] transition-all"
           >
-            {copied ? (
-              <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                Copied
-              </span>
-            ) : (
-              'Copy link'
-            )}
+            {copied ? 'Copied' : 'Copy link'}
           </button>
         </div>
 

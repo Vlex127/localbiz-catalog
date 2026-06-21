@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getClient, initDB } from '@/lib/db';
 import { formatPrice } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -47,12 +48,9 @@ async function getCatalog(slug: string) {
   });
 
   const products = prodResult.rows as unknown as ProductRow[];
-
   const categories = [...new Set(products.map(p => p.category).filter(Boolean))] as string[];
-
-  type PriceRange = { min: number; max: number } | null;
   const prices = products.filter(p => p.price !== null).map(p => p.price as number);
-  const priceRange: PriceRange = prices.length > 0
+  const priceRange = prices.length > 0
     ? { min: Math.min(...prices), max: Math.max(...prices) }
     : null;
 
@@ -65,11 +63,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!data) return { title: 'Catalog Not Found' };
 
   return {
-    title: `${data.catalog.business} — Products & Catalog`,
+    title: `${data.catalog.business} - Products & Catalog`,
     description: `Browse ${data.products.length} products from ${data.catalog.business}. ${data.categories.length} categories available.`,
     openGraph: {
       title: data.catalog.business,
-      description: `${data.products.length} products · ${data.categories.length} categories`,
+      description: `${data.products.length} products - ${data.categories.length} categories`,
     },
   };
 }
@@ -88,8 +86,10 @@ export default async function CatalogPage({ params }: PageProps) {
             </svg>
           </div>
           <h1 className="text-lg font-bold text-stone-800 mb-1">Store not found</h1>
-          <p className="text-sm text-stone-400">This catalog doesn&apos;t exist or has been removed.</p>
-          <a href="/" className="inline-block mt-4 px-5 py-2.5 bg-[var(--brand)] text-white text-sm font-semibold rounded-xl hover:opacity-90 transition">Create your own catalog</a>
+          <p className="text-sm text-stone-400">This catalog does not exist or has been removed.</p>
+          <Link href="/" className="inline-block mt-4 px-5 py-2.5 bg-[var(--brand)] text-white text-sm font-semibold rounded-xl hover:opacity-90 transition">
+            Create your own catalog
+          </Link>
         </div>
       </div>
     );
@@ -97,7 +97,9 @@ export default async function CatalogPage({ params }: PageProps) {
 
   const { catalog, products: rawProducts, categories, priceRange } = data;
   const createdDate = new Date(catalog.created_at).toLocaleDateString('en-IN', {
-    year: 'numeric', month: 'long', day: 'numeric',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
 
   const grouped = categories.reduce<Record<string, ProductRow[]>>((acc, cat) => {
@@ -184,7 +186,7 @@ export default async function CatalogPage({ params }: PageProps) {
 
           {priceRange && (
             <p className="text-xs text-stone-300 mt-2">
-              Price range: {formatPrice(priceRange.min, 'INR')} – {formatPrice(priceRange.max, 'INR')}
+              Price range: {formatPrice(priceRange.min, 'INR')} - {formatPrice(priceRange.max, 'INR')}
             </p>
           )}
         </header>
@@ -198,7 +200,7 @@ export default async function CatalogPage({ params }: PageProps) {
               </svg>
             </div>
             <p className="text-stone-500 font-medium text-sm">No products yet</p>
-            <p className="text-stone-400 text-xs mt-1">This store is setting up — check back soon!</p>
+            <p className="text-stone-400 text-xs mt-1">This store is setting up - check back soon.</p>
           </div>
         ) : (
           <div>
@@ -238,13 +240,13 @@ export default async function CatalogPage({ params }: PageProps) {
               </svg>
             </div>
             <h3 className="text-sm font-semibold text-stone-800 mb-1">Want a catalog like this for your business?</h3>
-            <p className="text-xs text-stone-400 mb-3">Snap photos, get AI descriptions, publish instantly — free.</p>
-            <a
+            <p className="text-xs text-stone-400 mb-3">Snap photos, get AI descriptions, publish instantly - free.</p>
+            <Link
               href="/"
               className="inline-block px-5 py-2.5 bg-gradient-to-r from-[var(--brand)] to-[var(--brand-dark)] text-white text-xs font-semibold rounded-xl hover:opacity-90 transition active:scale-[0.98] shadow-sm"
             >
               Create Your Free Catalog
-            </a>
+            </Link>
           </div>
         </div>
 

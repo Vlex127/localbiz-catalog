@@ -4,7 +4,7 @@ const STEPS = [
   {
     num: 1,
     title: 'Snap a Photo',
-    desc: 'Take a picture of any product with your phone. One item or a whole shelf — our AI handles it.',
+    desc: 'Take a picture of any product with your phone. One item or a whole shelf - our AI handles it.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
@@ -27,7 +27,7 @@ const STEPS = [
   {
     num: 3,
     title: 'Share Your Catalog',
-    desc: 'Get a beautiful public link to share on WhatsApp or anywhere — with an AI-generated store tagline.',
+    desc: 'Get a public link to share on WhatsApp or anywhere - with an AI-generated store tagline.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
@@ -47,7 +47,7 @@ export default function HowItWorks() {
 
       <div className="space-y-4">
         {STEPS.map((step) => (
-          <div key={step.num} className="flex items-start gap-4 animate-fade-up stagger-{step.num}">
+          <div key={step.num} className="flex items-start gap-4 animate-fade-up">
             <div className="w-10 h-10 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[var(--brand)] shrink-0">
               {step.icon}
             </div>
