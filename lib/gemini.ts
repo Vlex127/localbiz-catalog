@@ -10,7 +10,7 @@ export interface ExtractedProduct {
 }
 
 function getModel() {
-  return genAI.getGenerativeModel({ model: 'gemini-3.0-flash' });
+  return genAI.getGenerativeModel({ model: 'gemini-3.1-flash-lite' });
 }
 
 function cleanJson(text: string): string {
